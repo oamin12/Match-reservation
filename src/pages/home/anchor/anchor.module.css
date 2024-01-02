@@ -1,0 +1,30 @@
+.container{
+    position: fixed;
+    bottom: 4rem;
+    right: 4rem;
+    z-index: 10;
+    background-color: var(--primary-background);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 20px 0px;
+    opacity: 0;
+    border-radius: 100%;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.show{
+    opacity: 0.55;
+}
+
+.container > button{
+    display: flex;
+}
+
+.icon{
+    font-size: 5.5rem !important;
+    color: var(--primary-text);
+}
+
+@media screen and (max-width: 580px){
+    .icon{
+        font-size: 8rem !important;
+    }
+}

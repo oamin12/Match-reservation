@@ -1,0 +1,244 @@
+.box
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90rem;
+    height:50rem;
+    border: 0px;
+    background-color: white;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow:auto;
+}
+.container
+{
+    display: flex;
+    flex-direction: column;
+
+}
+.close
+{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.close button
+{
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight:lighter;
+    text-align: center;
+    margin-right: 1rem;
+    margin-top:1rem;
+
+    color: var(--primary-text);
+    cursor: pointer;
+    background-color: transparent;
+    align-items: center;
+    border: solid 0.2rem var(--primary-text);
+    border-radius: 4rem;
+    transition: all 0.3s ease-in-out;
+}
+.close button:hover
+{
+    background-color: var(--primary-text);
+    color: white;
+}
+.title
+{
+    font-size: 4rem;
+    font-weight: 400;
+    margin: 2rem;
+    margin-bottom: 5rem;
+    align-self: center;
+    font-family: var(--main-font);
+    color: var(--green);
+}
+.picture
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+
+}
+.picture p
+{
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-family: var(--main-font);
+    color: var(--primary-text);
+    margin-bottom: 2rem;
+}
+.imgHad
+{
+    width: 50%;
+}
+.info
+{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transition: all 0.3s ease-in-out;
+
+}
+.infoData
+{
+    margin-left: 4rem;
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.img
+{
+    width: 2rem;
+    
+}
+.infoItem
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:2rem;
+}
+.infoItem a
+{
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-family: var(--main-font);
+    color: var(--primary-text);
+    cursor: pointer;
+}
+.infoItem p
+{
+    font-size: 2rem;
+    font-weight: 300;
+    font-family: var(--main-font);
+    color: var(--orange);
+}
+.creditCard{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+}
+.creditCard input
+{
+    width: 30rem;
+    height: 4rem;
+    border: solid 0.2rem var(--green);
+    border-radius: 0.5rem;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-family: var(--main-font);
+    color: var(--primary-text);
+}
+.btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    width: 80%;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+
+}
+.btns button
+{
+    width: 15rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-family: var(--main-font);
+    color: var(--primary-text);
+    cursor: pointer;
+    background-color: transparent;
+    align-items: center;
+    border: solid 0.2rem var(--green);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-in-out;
+}
+.btns button:hover
+{
+    background-color: var(--green);
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+.error{
+    color: red;
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-family: var(--main-font);
+    margin-top: 1rem;
+}
+.success{
+    color: green;
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-family: var(--main-font);
+    margin-top: 1rem;
+}
+@media screen and (max-width:580px)
+  {
+
+   
+    .box
+    {
+        
+        width: 90%;
+        height:72rem;
+       
+    }
+    .info
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+    .infoItem a
+    {
+        font-size: 1.7rem;
+        
+    }
+    .infoItem p
+    {
+        font-size: 2rem;
+    }
+    .infoItem2 a
+    {
+        font-size: 1.7rem;
+    }
+    
+    .picture p
+    {
+        font-size: 2rem;
+    }
+    .title
+    {
+        margin-bottom: 3rem;
+    }
+    .picture
+    {
+        margin-top: 2rem;
+    }
+}
+

@@ -1,0 +1,166 @@
+.card, .newCard{
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin:1.6rem;
+
+    max-width: 30rem;
+    margin: auto;
+    margin-bottom: 4rem;
+}
+
+
+.cardImageTeams{
+    height: 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 0;
+}
+.teamVs{
+    font-size: var(--lengthL2);
+    font-weight: 600;
+    color: var(--green);
+    font-family: var(--main-font);
+}
+
+.cardImageTeams img{
+    width: 6rem;
+    aspect-ratio: 1;
+    height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:0;
+}
+
+.teamsNames{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.teamsNames p{
+    font-size: var(--lengthM3);
+    font-weight: 600;
+    color: var(--green);
+    font-family: var(--main-font);
+    margin-bottom: 3rem;
+}
+.cardContent{
+    padding: 0 2rem;
+    position: relative;
+}
+
+
+.cardContent h3{
+    text-align: left;
+    font-family: var(--main-font);
+    color: var(--green);
+    margin-top: 1rem;
+    font-size: var(--lengthL1);
+    font-weight: 600;
+    min-height: 6rem;
+}
+
+.cardContent .time{
+    font-size: var(--lengthM3);
+    font-weight: 600;
+    color: var(--orange);
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding: 1.5rem 0;
+}
+
+.cardContent .location{
+    font-size: var(--lengthM2);
+    font-weight: 400;
+    font-family: var(--main-font);
+    color: var(--green);
+    opacity: .9;
+    padding-block: .5rem;
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.cardContent .price{
+    color: var(--green);
+    font-family: var(--main-font);
+    font-weight: 400;
+    opacity: .9;
+    font-size: var(--lengthM3);
+    display: flex;
+    justify-content: space-between;
+    margin-block: 2rem;
+    padding-block: .5rem;
+    border-block: solid rgba(44, 76, 76, .4) 1px;
+}
+
+.cardContent .btn{
+    color: var(--green);
+    display: grid;
+    align-items: center;
+    grid-template-columns: 9fr 1fr;
+    border: solid var(--green) 1px;
+    width: 100%;
+    height: 4rem;
+    margin-bottom: 2rem;
+    padding-inline: 1rem;
+    font-size: var(--lengthM3);
+    transition: all 0.5s ease;
+
+}
+
+
+.btn:hover {
+    background-color: var(--green);
+    transition: all 0.5s ease;
+    color: white;
+    font-weight: 500;
+  }
+
+.imgSkeleton{
+    display: flex;
+    margin: auto;
+    width: 80%;
+    margin: auto;
+    margin-block: 5rem;
+}
+
+.txtSkeleton{
+    width: 80%;
+    margin: auto;
+    margin-bottom: 10rem;
+}
+.review{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+.reviewIcon{
+    transition: all 0.3s ease-in-out;
+}
+.reviewIcon:hover{
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 768px) {
+    .card, .newCard{
+        max-width: 40rem;
+    }
+}

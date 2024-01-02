@@ -1,0 +1,113 @@
+.container{
+  background-color: var(--green);
+  color: var(--text-gray);
+  padding-top: 3.2rem;
+  font-size: var(--lengthM2);
+  min-height: 10vh;
+}  
+.container > p{
+  padding-block: 1rem;
+  margin: auto;
+  width: max-content;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  row-gap: 1.6rem;
+  overflow: hidden;
+}
+
+.footer h3{
+  font-size: var(--lengthL1);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.data{
+  display: flex;
+  flex-basis: 60%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 60%;
+  padding-inline: min(10rem, 5vw);
+  gap: 2rem;
+}
+
+.data>*{
+  margin-inline: 1rem;
+}
+
+.data li{
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  margin-block: .5rem;
+  cursor: pointer;
+  width: max-content;
+}
+
+.data li:hover{
+  color: var(--pink);
+}
+
+.newsLetter{
+  flex-basis: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.subscribe{
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+  padding-right: 2rem;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.subscribe input{
+  width: 17rem;
+}
+
+
+.subscribe button{
+  background-color: var(--pink);
+  color: var(--primary-text);
+  padding-block: .5rem;
+  padding-inline: 1rem;
+  font-size: var(--lengthM2);
+}
+
+.socials{
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.socials img{
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.newsLetter > div > img{
+  width: min(14rem, 11vw);
+  /* object-fit: cover; */
+  margin-right: 1rem;
+}
+
+.socials a{
+  padding: .5rem;
+  border-radius: 100%;
+  width: fit-content;
+  aspect-ratio: 1;
+  /* background-color: rgba(255, 255, 255, 0.305); */
+  color: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.socials a:hover{
+  background-color: var(--pink);
+}

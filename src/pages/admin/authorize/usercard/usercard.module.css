@@ -1,0 +1,111 @@
+.containerTicket {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+    width: 80%;
+    height: 23rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+  
+  
+  .teamsNames{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      
+  }
+  .teamsNames p{
+      font-size: var(--lengthM3);
+      font-weight: 600;
+      color: var(--green);
+      font-family: var(--main-font);
+      margin-bottom: 1rem;
+  }
+  
+  
+  .time{
+      font-size: var(--lengthM3);
+      font-weight: 600;
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: 1.5rem 0;
+  }
+  
+  .location{
+      font-size: var(--lengthM2);
+      font-weight: 400;
+      font-family: var(--main-font);
+      color: var(--green);
+      opacity: .9;
+      padding-block: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+  }
+  
+  .price{
+      color: var(--green);
+      font-family: var(--main-font);
+      font-weight: 400;
+      opacity: .9;
+      font-size: var(--lengthM3);
+      display: flex;
+      justify-content: space-between;
+      margin-block: 2rem;
+      padding-block: .5rem;
+      border-block: solid rgba(44, 76, 76, .4) 1px;
+  }
+  
+  .btn{
+      color: var(--orange);
+      display: grid;
+      align-items: center;
+      grid-template-columns: 9fr 1fr;
+      border: solid var(--orange) 1px;
+      width: 100%;
+      height: 4rem;
+      margin-bottom: 2rem;
+      padding-inline: 1rem;
+      font-size: var(--lengthM3);
+      transition: all 0.3s ease;
+  
+  }
+  
+  .btn:hover {
+      background-color: var(--orange);
+      transition: all 0.3s ease;
+      color: white;
+      font-weight: 500;
+    }
+    .ticketButtons{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 2rem;
+    }
+    .ticketDetails{
+        display: flex;
+        flex-direction: column;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+  
+  h3{
+      text-align: left;
+      font-family: var(--main-font);
+      color: var(--green);
+      margin-top: 2rem;
+      font-size: var(--lengthL1);
+      font-weight: 600;
+  }

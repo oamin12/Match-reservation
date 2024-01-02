@@ -1,0 +1,32 @@
+.title{
+    margin-top: 10rem;
+    color: var(--orange);
+}
+.container{
+    width:100%;
+}
+.containerbox
+{
+    width:83%;
+    margin: 1rem auto;
+}
+
+.container > hr {
+    height: 17rem;
+    border: none;
+}
+
+.pageLoader{
+    height: 82.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pageLoader > img{
+    height: 11rem;
+    aspect-ratio: 1;
+}
+
+.subscribeSection {
+    background-color: var(--light-green);
+}

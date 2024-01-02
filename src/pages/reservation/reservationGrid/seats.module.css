@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+
+
+.container {
+  margin-bottom: 30px;
+  background-color: var(--gray-semitransparent);
+  width: 100%;
+  overflow: scroll;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-block: 2rem;
+}
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.seat {
+  background-color: #fff;
+  height: 3rem;
+  width: 30px;
+  margin: 2.5px;
+  font-size: 1rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: all 0.5s ease;
+
+
+}
+
+.selected {
+  height: 3rem;
+  width: 30px;
+  margin: 2.5px;
+  font-size: 1rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: all 0.5s ease;
+
+  background-color: var(--green)
+}
+
+.sold {
+  height: 3rem;
+  width: 30px;
+  margin: 2.5px;
+  font-size: 1rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #444451;
+
+}
+
+.seat:not(.sold):hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.5s ease;
+
+}
+.selected:hover {
+  transition: all 0.5s ease;
+
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+
+.row {
+  display: flex;
+}
+
+
+.sectionTitle{
+  font-size: 3rem;
+  font-family: var(--main-font);
+  font-weight: 400;
+  color: var(--green);
+  margin-top: 2rem;
+  text-transform: capitalize;
+  justify-self: center;
+  border-bottom: solid 0.2rem var(--orange);
+}
+.stadium{
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-block: 0rem;
+  gap: 1rem;
+  padding-bottom: 2rem;
+}
+

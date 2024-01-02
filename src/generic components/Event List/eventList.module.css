@@ -1,0 +1,148 @@
+.list {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 5rem;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.secheader {
+  margin-top: 2rem;
+  margin-left: 1rem;
+  font-size: 2rem;
+}
+
+.secheader>h3{
+  font-family: var(--secondary-font);
+  color: var(--green);
+  text-align: center;
+  font-size: var(--lengthL3);
+  margin-bottom: 4rem;
+  font-weight: 400;
+  /* letter-spacing: .1rem; */
+}
+
+.moreBtn {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+}
+.moreBtn button {
+  border: solid 2px var(--faded-grey);
+  background-color: var(--secondary-background);
+  color: var(--moretext);
+  font-size: 1.4rem;
+  padding: 1.2rem 0;
+  font-weight: 600;
+  border-radius: 3px;
+  width: 41rem;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+.moreBtn button:hover {
+  border: solid 2px var(--secondary-text);
+  background-color: var(--primary-background);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.noevents {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0; 
+  width: 100%;
+  color: var(--green);
+
+}
+
+.noevents p {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 400;
+  font-family: var(--main-font);
+  
+}
+
+.noevents img{
+  width: 35rem;
+}
+
+/* This is the css for alice carousel */
+.carouselIndexBtn,
+.carouselIndexBtnActive{
+    width : 0.2rem;
+    height: 0.2rem;
+    border: solid 2px var(--green);
+    border-radius: 50%;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    cursor: pointer;
+}
+.carouselIndexBtnActive{
+    border: solid 2px var(--green);
+    background-color: var(--faded-green);
+}
+.carouseLBtn,
+.carouselRBtn,
+.carouseLBtnDis,
+.carouselRtnDis {
+    position: absolute;
+    top:40%;
+    fill: var(--green);
+    color: var(--green);
+    border: solid var(--green) 2px;
+    border-radius: 100%;
+    padding: .5rem;
+    margin: auto;
+  }
+
+.carouseLBtn:hover,
+.carouselRBtn:hover{
+    opacity: .8;
+    cursor: pointer;
+} 
+.carouseLBtn{
+    left: -5%;
+}
+.carouselRBtn{
+    right: -5%;
+}
+
+.carouseLBtnDis{
+    left: -5%;
+    color: var(--secondary-text);
+    border: solid var(--secondary-text) 2px;
+    opacity: .8;
+    cursor: not-allowed;
+}
+
+.carouselRtnDis{
+    right: -5%;
+    color: var(--secondary-text);
+    border: solid var(--secondary-text) 2px;
+    opacity: .8;
+    cursor: not-allowed;
+}
+
+.foolingBtn{
+    width: 0;
+    height: 0;   
+}
+
+
+/* The end of alice carousel css */
+@media screen and (max-width:470px)
+  {
+    .carouseLBtn,
+  .carouselRBtn,
+  .carouseLBtnDis,
+  .carouselRtnDis {
+    display: none !important;
+  }
+  }

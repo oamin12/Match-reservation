@@ -1,0 +1,220 @@
+.logoContainer{
+    width: 6rem;
+    padding-left: 5rem;
+    cursor: pointer;
+}
+
+.logoContainer img{
+    width: 100%;
+    border-radius: 100%;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    height: 10.5vh;
+    background: var(--primary-background);
+    position: relative;
+    z-index: 10;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+}
+
+.routes{
+    display: flex;
+}
+
+.routes>ul{
+    display: flex;
+    align-items: center;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+}
+
+.navItem{
+    color: var(--green);
+    font-family: var(--main-font);
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: .05rem;
+    padding-block: 1rem;
+    padding-inline: 2rem;
+    text-overflow: ellipsis;
+    text-decoration: 'none';
+    margin-block: auto;
+    position: relative;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+
+.navItem::after{
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 3px;
+    left: 50%;
+    position: absolute;
+    background: var(--orange);
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.navItem:hover{
+    cursor: pointer;
+}
+
+.navItem:hover:after { 
+    width: 80%; 
+    left: 10%; 
+}
+
+.navItem>ol{
+    display: none;
+}
+
+.navItem:hover>ol{
+    display: unset;
+}
+
+a{
+    color: unset;
+}
+
+.routes .arrow{
+    fill: var(--orange);
+    stroke: var(--orange);
+    stroke-width: 1px;
+    position: relative;
+    width: 2rem;    
+    height: 2.3rem;
+}
+
+.routes .profile{
+    fill: var(--green);
+    position: relative;
+    width: 2rem;    
+    height: 2rem;
+    padding: .1rem;
+    margin-right: .6rem;
+    /* border: solid var(--orange) 2px;
+    border-radius: 100%; */
+}
+
+.navItem .fav{
+    width: 2rem;    
+    height: 2rem;
+}
+
+.wrapper>div{
+    display: flex;
+    place-items: center;
+    gap: 1.3rem;
+}
+
+.dropDown:hover{
+    display: unset;
+}
+
+.navSubItem:hover{
+    background-color: var(--secondary-background);
+    color: var(--green);
+    cursor: pointer;
+}
+
+.dropDown{
+    right: 0;
+    position: absolute;
+    width: 25rem;
+    top: 100%;
+    background-color: var(--primary-background);
+    color: #a1a1ac;
+}
+
+
+.dropDown>li{
+    position: relative;
+    /* padding-left: 2rem; */
+    height: 8rem;
+    font-family: var(--main-font);
+
+}
+
+.dropDown>li>a{
+    padding-left: 2rem;
+}
+
+.mobile{
+    z-index: 100;
+    display: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+}
+
+.btn{
+    border: solid var(--green) 2px;
+    margin: 2rem;
+    display: flex;
+    align-items: center;
+    padding-inline: 2rem;
+    padding-block: 1rem;
+    font-family: var(--main-font);
+    font-weight: 500;
+    font-size: 1.3rem;
+    letter-spacing: .05rem;
+    color: var(--primary-background);
+    background-color: var(--green);
+}
+
+.btn>svg{
+    fill: var(--primary-background);
+    padding-left: 1rem;
+    transform: scale(1.7);
+}
+
+.nav .burger{
+    width: 5rem;
+    height: 5rem;
+    padding-inline: 2rem;
+    display: none;
+    fill: var(--green);
+}
+
+.navTitle{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width:960px) {
+    .routes{
+        display: none;
+    }
+
+    .nav .burger{
+        display: unset;
+        transition: ease .5s;
+    }
+    .burger:hover{
+        cursor: pointer;
+    }
+    .nav:has(>ol) .burger{
+        transform: rotate(.5turn);
+    }
+
+    .dropDown{
+        width: 35rem;
+    }
+
+    .dropDown>li{
+        font-size: var(--lengthL1);
+    }
+}
+
+

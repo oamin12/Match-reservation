@@ -1,0 +1,146 @@
+.card {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    width: 90%;
+    height: 35rem;
+  }
+  
+  .card:hover {
+    -webkit-box-shadow: 0 16px 69px -16px rgb(46 55 77 / 30%);
+    box-shadow: 0 16px 64px -16px rgb(46 55 77 / 30%);
+    cursor: pointer;
+  }
+  
+  .cardImage {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    overflow: hidden;
+    display: block;
+  }
+  
+  .cardImage img {
+     width: 100%;
+    height: 100%;
+    background-position: center top !important;
+    object-fit: cover !important;
+
+  }
+  
+  .cardContent {
+    flex: 1;
+    height: 100%;
+    flex-direction: column;
+    align-items: baseline;
+    display: flex;
+    margin: 0.5rem;
+    margin-left: 2rem;
+  }
+  
+  .cardTitle {
+    color: var(--green);
+    font-size: 3.5rem;
+    font-family: var(--secondary-font);
+    font-weight: 500;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    flex:1;
+    margin-top: 1rem;
+  }
+  .cardText {
+    flex: 2;
+    font-size: 1.5rem;
+    width: 90%;
+    
+    font-weight: 500;
+    line-height: 1.55;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-family: var(--secondary-font);
+    color: var(--primary-text);
+    opacity: 0.9;
+    font-weight: 300;
+    overflow: hidden;
+
+  }
+  .cardpublishdate{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+    color: var(--green);
+    text-align: left;
+    font-family: var(--secondary-font);
+    
+  }
+  .cardBottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between;
+    width:100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cardAuthor {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--orange);
+    text-align: left;
+    font-family: var(--secondary-font);
+    text-decoration: overline;
+  }
+
+
+  .cardButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 3rem;
+
+  }
+
+  .cardReadMore {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--green);
+    text-align: left;
+    font-family: var(--secondary-font);
+    justify-self: end;
+    margin: 0.5rem;
+  }
+
+  
+
+  .cardButtonIcon{
+    font-size: 2rem;
+    margin-right: 0.5rem;
+    align-self: center;
+  }
+
+  @media screen and (max-width:470px)
+  {
+    .card{
+      width:86%;
+    }
+    /* .cardText{
+      font-size:1.8rem;
+      -webkit-line-clamp: 10;
+
+    } */
+    .cardReadMore {
+      font-size: 1.2rem;
+     
+    }
+    .cardAuthor {
+      font-size: 1.2rem;
+      
+    }
+
+  
+  }

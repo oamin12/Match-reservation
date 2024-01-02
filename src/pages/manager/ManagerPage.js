@@ -1,0 +1,45 @@
+import React, { useState, useEffect } from "react";
+import { Routes, Route} from "react-router-dom";
+import classes from "./manager.module.css";
+import AdminBlogs from "./blogs/AdminBlogs"
+import AdminPrograms from "./programs/AdminPrograms"
+import AdminAuthorize from "./authorize/AdminAuthorize"
+import AdminAllUsers from "./allUSers/AdminAllUsers";
+import SideBar from "./../../layouts/sideBar/Sidebar"
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../store/userSlice";
+import { useSelector } from "react-redux";
+
+
+
+const ManagerPage = () => {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  //To make sure user can't access login if he is already logged in
+  useEffect(() => {
+    if(user.userType !== "manager"){
+      navigate("/")
+    }
+  }, []);
+
+
+  return (
+    <>
+      <div className={classes.container}>
+      <SideBar SideBar={"manager"}/>
+      <Routes>
+        <Route path="/"  element={<AdminAuthorize/>}/>
+        <Route path="/allusers" element={<AdminAllUsers />} />
+        <Route path="/blogs" element={<AdminBlogs />} />
+      </Routes>
+
+      </div>
+    </>
+  );
+};
+
+export default ManagerPage;

@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    padding: 1rem 2rem;
+
+    width: 30rem;
+
+    border-radius: 0.5rem;
+    border-left: solid 1.2rem var(--light-green);
+    background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+
+    box-sizing: border-box;
+
+    margin: 1rem 2rem 1rem 0rem;
+}
+
+.msg{
+    font-size: var(--lengthL1);
+    font-family: var(--main-font);
+    font-weight: 100;
+    color: var(--primary-text);
+    flex-wrap: wrap;
+}
