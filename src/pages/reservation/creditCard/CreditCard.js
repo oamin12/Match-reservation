@@ -26,6 +26,12 @@ function CreditCard(props) {
             setError("Please enter your password");
             return;
         }
+        if (creditCardNumber.length !== 16) {
+            setError("Please enter a valid credit card number");
+            props.setSuccess("");
+            return;
+
+        }
         setError("");
         props.handleSubmitSelectedSeats();
     }
