@@ -45,10 +45,7 @@ const LoginPage = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .min(3)
-      .email("Please enter a valid email address")
-      .required("Please enter a valid email address"),
+    email: Yup.string().required("Please enter a valid user name or email address"),
     password: Yup.string().required("Password is required"),
   });
   const [loader,setLoader] = useState(false);
@@ -68,7 +65,7 @@ const LoginPage = () => {
           userActions.login({
             id: response.data.user._id,
             token: response.data.token,
-            userType: "manager",
+            userType: "fan",
             isAdmin: response.data.user.isAdmin
           })
         );
@@ -79,16 +76,16 @@ const LoginPage = () => {
         setLoader(false);
         // console.log("X" + err.response.data.error + "x");
         if (err.response.data.error === "Error: Password is incorrect") {
-          setErrorMsg("Email or password is incorrect");
+          setErrorMsg("user name or password is incorrect");
           setShowForgetPass(true);
         } else if (
           err.response.data.error === "Error: email is not verified "
         ) {
           setErrorMsg("Email is not verified");
         } else {
-          setErrorMsg("There is no account associated with the email.");
+          setErrorMsg("There is no account associated with the email or username.");
           setErrors({
-            email: "There is no account associated with the email.",
+            email: "There is no account associated with the email or username.",
           });
           setErrorLinkMsg("Create account");
           setErrorLink("/signup");
@@ -173,7 +170,7 @@ const LoginPage = () => {
                 <Form>
                   {setEmail(values.email)}
                   <div className={classes.boxContainer}>
-                    <label className={classes.label}> Email address</label>
+                    <label className={classes.label}>User Name or Email address</label>
                     <Field
                       className={classes.field}
                       name="email"

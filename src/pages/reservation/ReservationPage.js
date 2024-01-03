@@ -9,8 +9,15 @@ import Loader from "../../layouts/loader/Loader";
 import matchesDetailsData from "../../assets/data/matchDetailsData";
 import Seats from "./reservationGrid/Seats";
 import CreditCard from "./creditCard/CreditCard";
+import { useSelector } from "react-redux";
+
 
 const ReservationPage = () => {
+
+  const myUser = useSelector((state) => state.user);
+  const id = myUser.id;
+  const [user, setUser] = useState({});
+
   const [isLoading, setIsLoading] = useState(false);
   
   const [teams, setTeams] = useState([matchesDetailsData.team1, matchesDetailsData.team2]);
@@ -41,8 +48,14 @@ const ReservationPage = () => {
   };
 
   function handleReserveClick(){
+    if(myUser.userType==="fan"){
+      setModalOpen(true);
+    }
+    else{
+      alert("You must be a fan to reserve a ticket");
+    }
     console.log("reserve clicked");
-    setModalOpen(true);
+    
   }
   function handleSubmitSelectedSeats(){
     for(var i=0; i<seatArrangement.length; i++){

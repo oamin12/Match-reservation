@@ -75,7 +75,7 @@ const NavBar = (props) => {
                 </NavLink>
               ) : (
                 <>
-                  {user.userType === "user" ? (
+                  {user.userType === "fan" ? (
                     <NavLink to={"/profile/" + user.id}>
                       <li className={classes.navItem}>
                         <PersonOutlineIcon className={classes.profile} /> My Profile
