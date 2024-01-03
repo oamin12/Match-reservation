@@ -269,6 +269,10 @@ input[type="number"] {
 }
 
 @media screen and (max-width: 768px) {
+
+  .container {
+    height: 75vh;
+  }
   .fieldRow {
     display: flex;
     flex-direction: column;
@@ -290,7 +294,6 @@ input[type="number"] {
     letter-spacing: 0.09rem;
     color: var(--primary-background);
     background-color: var(--orange);
-    position: absolute;
     bottom: 0rem;
     right: 3%;
   }

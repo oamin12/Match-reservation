@@ -45,8 +45,6 @@ const HomePage = () => {
           :
         <Loader/>
         }
-        <div className={classes.subscribeSection}>
-        </div>
         <Anchor />
       </div>
     </>

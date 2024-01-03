@@ -16,6 +16,7 @@ import {TfiEmail} from "react-icons/tfi";
 import { NavLink } from "react-router-dom";
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import Loader from "../../layouts/loader/Loader";
+import Cities from "../../assets/data/Cities.js";
 
 /**
  * Component that renders Signup page
@@ -59,6 +60,7 @@ const SignupPage = () => {
     passwordConfirm: "",
     birthDate: "",
     role: "user",
+    city: "Mokattam",
   };
 
   const validationSchema = Yup.object().shape({
@@ -211,6 +213,26 @@ const rejecthandle=()=>{
                         <div>Female</div>
                       </label>
                     </div>
+                    </div>
+                    <div className={classes.boxContainer}>
+                      <label className={classes.label}>City</label>
+                            <Field
+                              as="select"
+                              name="city"
+                              className={classes.field}
+                              defaultValue={values.city}
+                            >
+                              {Cities.map((city) => {
+                                return (
+                                  <option
+                                    value={city.city_name_en}
+                                    className={classes.dropItem}
+                                  >
+                                    {city.city_name_en}
+                                  </option>
+                                );
+                              })}
+                            </Field>
                     </div>
                     <div className={classes.boxContainer}>
                         <label className={classes.label}> address </label>

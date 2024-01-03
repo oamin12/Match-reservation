@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route} from "react-router-dom";
 import classes from "./addmatch.module.css";
-import UserCard from "./usercard/UserCard.js"
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "../../../requests/axios";

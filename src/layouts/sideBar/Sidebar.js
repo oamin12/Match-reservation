@@ -21,7 +21,7 @@ const SideBar = (props) => {
     },[]);
 
   return (
-    <div className={props.show?classes.smallScreenSideBar:classes.sideBar}>
+    <div className={classes.sideBar}>
         <div className={classes.logoContainer}>
             <img src={logo} alt="logo" className={classes.logo}/>
         </div>
