@@ -1,5 +1,5 @@
 import classes from "./eventCard.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PinDropIcon from '@mui/icons-material/PinDrop';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import { Link } from "react-router-dom";
@@ -13,12 +13,26 @@ const EventCard = (props) => {
   const [newCard, setNewCard] = useState(props.location==="Zanzibar")
   const [review, setReview] = useState(props.review)
   const [open, setOpen] = React.useState(false);
+  const [stadium, setStadium] = useState("");
+  
 
   function parseDate(date) {
     if (!date)
       return ""
     return new Date(date).toLocaleString().split(",")[0].replaceAll("/", "-")
   }
+  useEffect(() => {
+    //get stadium name from id
+    async function getStadium() {
+      try {
+        const response = await axios.get(routes.getStadium + props.stadiumId);
+        console.log("stadium", response.data);
+        setStadium(response.data.name);
+      } catch (err) {}
+    }
+    getStadium();
+  }
+  , []);
 
   async function addToWishlistFun() {
     try {
@@ -65,7 +79,7 @@ const EventCard = (props) => {
             <p>{props.team2}</p>
           </div>
           <div className={classes.location}>
-            <PinDropIcon /> {props.location}
+            <PinDropIcon /> {stadium}
           </div>
           <div className={classes.time}>
             <DateRangeIcon />

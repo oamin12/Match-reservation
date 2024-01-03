@@ -12,11 +12,29 @@ import stadiumsList from "../../../assets/data/stadiums.js";
 const AddMatch = (props) => {
 
   const [teams, setTeams] = useState([]);
-  const [stadiums, setStadiums] = useState(stadiumsList);
+  const [stadiums, setStadiums] = useState();
+  const [stadiumsList, setStadiumsList] = useState([]); //TODO: get stadiums from backend
+  const [dataToBeSent, setDataToBeSent] = useState();
 
   useEffect(() => {
     //get teams names from teamsNameImage.js and set it to teams
     setTeams(teamsList);
+
+    //get stadiums names from backend and set it to stadiums TODO
+   async function getStadiums(){
+      try {
+        const response = await axios.get(routes.getStadiums);
+        console.log("Get ALl",response.data);
+        let stadiumNames = response.data.map(stadium => stadium.name);
+        setStadiums(stadiumNames);
+        setStadiumsList(response.data);
+
+
+      } catch (err) {}
+
+      
+    } 
+    getStadiums();
   }, []);
 
   const initialValues = {
@@ -27,6 +45,7 @@ const AddMatch = (props) => {
     mainreferee: "",
     firstlinesman: "",
     secondlinesman: "",
+    price: "",
 
   };
   function getStadiums(){
@@ -41,19 +60,39 @@ const AddMatch = (props) => {
     mainreferee: Yup.string().required("main referee is required"),
     firstlinesman: Yup.string().required("first linesman is required"),
     secondlinesman: Yup.string().required("second linesman is required"),
+    price: Yup.string().required("price is required"),
 
   });
 
   const handleSubmit = (data, { setErrors }) => {
     console.log(data);
-    async function updateData() {
+    //get match id from stadium list and stadium name
+    for (let i = 0; i < stadiumsList.length; i++) {
+      if (stadiumsList[i].name === data.stadium) {
+        var stadiumId = stadiumsList[i]._id;
+      }
+    }
+    console.log(stadiumId);
+    let data1 = {
+      homeTeam : data.team1,
+      awayTeam : data.team2,
+      matchVenue: stadiumId,
+      dateTime: data.date,
+      mainReferee: data.mainreferee,
+      linesmen: [data.firstlinesman, data.secondlinesman],
+      price: data.price
+    }
+
+
+
+
+    async function addMatch() {
       try {
-        const response = await axios.put(routes.getUser, data);
+        const response = await axios.post(routes.addmatch, data1);
       } catch (err) {}
     }
 
-    updateData();
-    props.setProceed(3)
+    addMatch();
   };
 
   return (
@@ -138,7 +177,7 @@ const AddMatch = (props) => {
                             className={classes.fieldo}
                             defaultValue={values.stadium}
                           >
-                            {stadiums.map((stadium) => {
+                            {stadiums?.map((stadium) => {
                               return (
                                 <option
                                   value={stadium}
@@ -177,6 +216,20 @@ const AddMatch = (props) => {
                     />
                     <ErrorMessage
                       name="mainreferee"
+                      component="span"
+                      className={classes.error}
+                    />
+                  </div>
+                  <div className={classes.fieldEntry}>
+                    <label className={classes.label}>Price</label>
+                    <Field
+                      className={classes.fieldo}
+                      name="price"
+                      type="number"
+                      autoComplete="off"
+                    />
+                    <ErrorMessage
+                      name="price"
                       component="span"
                       className={classes.error}
                     />

@@ -19,6 +19,8 @@ const HomePage = () => {
       const response = await axios.get(routes.getHome);
       setHomeData(response.data);
       setLoading(false);
+      console.log("response", response.data);
+      setHomeData(response.data)
     } catch (err) { }
   }
   useEffect(() => {
@@ -28,7 +30,7 @@ const HomePage = () => {
     //   teamImage = teamNameImage.filter(function (item) {
     //     return item.team === element.team1;
     //   });
-      matchesData.forEach(element => {
+    homeData.forEach(element => {
         console.log("element", teamNameImage[element.team1]);
         element.image1 = teamNameImage[element.team1];
         element.image2 = teamNameImage[element.team2];
@@ -40,8 +42,8 @@ const HomePage = () => {
   return (
     <>
       <div className={classes.container}>
-        {matchesData?.length > 0? 
-          <EventList title={true} events={matchesData} />
+        {homeData?.length > 0? 
+          <EventList title={true} events={homeData} />
           :
         <Loader/>
         }

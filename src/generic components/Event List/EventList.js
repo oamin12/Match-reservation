@@ -43,11 +43,11 @@ const EventList = (props) => {
                 img={card.image}
                 image1={card.image1}
                 image2={card.image2}
-                team1={card.team1}
-                team2={card.team2}
-                date={card.date}
+                team1={card.homeTeam}
+                team2={card.awayTeam}
+                date={card.dateTime}
                 duration={card.duration}
-                location={card.location}
+                location={card.matchVenue}
                 type={card.type}
               />
             ))}

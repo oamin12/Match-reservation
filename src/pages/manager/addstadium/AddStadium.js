@@ -23,7 +23,7 @@ const AddStadium = (props) => {
   }, []);
 
   const initialValues = {
-    stadiumName: "",
+    name: "",
     rows: "",
     seatsPerRow: "",
   };
@@ -31,7 +31,7 @@ const AddStadium = (props) => {
     //get stadiums names from backend and set it to stadiums TODO
   }
   const validationSchema = Yup.object().shape({
-    stadiumName: Yup.string().required("Please enter a stadium name"),
+    name: Yup.string().required("Please enter a stadium name"),
     rows: Yup.string().required("Please enter number of rows"),
     seatsPerRow: Yup.string().required("Please enter number of seats per row"),
   });
@@ -40,7 +40,7 @@ const AddStadium = (props) => {
     console.log(data);
     async function updateData() {
       try {
-        const response = await axios.put(routes.getUser, data);
+        const response = await axios.post(routes.addStadium, data);
       } catch (err) {}
     }
 
@@ -82,12 +82,12 @@ const AddStadium = (props) => {
                       <label className={classes.label}>Stadium Name</label>
                       <Field
                         className={classes.fieldo}
-                        name="stadiumName"
+                        name="name"
                         type="text"
                         autoComplete="off"
                       />
                       <ErrorMessage
-                        name="stadiumName"
+                        name="name"
                         component="span"
                         className={classes.error}
                       />
