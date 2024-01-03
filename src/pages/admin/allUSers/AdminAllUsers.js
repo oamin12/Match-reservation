@@ -4,19 +4,26 @@ import classes from "./adminAll.module.css";
 import UserCard from "./usercard/UserCard.js"
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import axios from "../../../requests/axios";
+import routes from "../../../requests/routes";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 
 const AdminAllUsers = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // async function fetchData() {
-    //   try {
-    //     const response = await axios.get(routes.getUsers);
-    //     setUsers(response.data);
-    //   } catch (err) {}
-    // }
-    // fetchData();
+    //get users names from backend and set it to users TODO
+    async function getUsers() {
+      try {
+        const response = await axios.get(routes.getAllUsers);
+        setUsers(response.data);
+      }
+      catch (err) {}
+    }
+    getUsers();
+
+
     setUsers([
       {
         id: 1,
@@ -54,8 +61,8 @@ const AdminAllUsers = () => {
               return (
                 <UserCard
                   key={user.id}
-                  id={user.id}
-                  name={user.name}
+                  id={user._id}
+                  name={user.firstName + " " + user.lastName}
                   email={user.email}
                 />
               );

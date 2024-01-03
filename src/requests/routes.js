@@ -8,6 +8,15 @@ const routes = {
     getHome: "/match/",
     addmatch:"/match/add-match/",
     addStadium:"/stadium/add-stadium/",
-    getStadiums:"/stadium/",
+    getStadiums:"/stadium/get-stadium/",
+    getAllStadiums:"/stadium/",
+    getmatch:"/match/get-match/",
+    addReservation:"/reservations/add-reservation/",
+    getAllUsers:"/user/",
+    deleteUser:"/user/delete-user/",
+    getUnauthorized:"/user/unapproved-users/",
+    authorizeUser:"/user/approve-user/",
+    getUserReservations:"/user/get-user-reservations/",
+    deleteReservation:"/reservations/delete-reservation/",
 }
 export default routes 

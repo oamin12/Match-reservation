@@ -9,12 +9,9 @@ instance.interceptors.request.use(
     const token = sessionStorage.getItem("token");
 
     if (token) {
-      console.log("token", token);
       config.headers.Authorization = `${token}`;
       //config.headers.ID = sessionStorage.getItem("ID");
     }
-    console.log("config", config.headers);
-
     return config;
   },
   (error) => {

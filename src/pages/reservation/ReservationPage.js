@@ -10,25 +10,76 @@ import matchesDetailsData from "../../assets/data/matchDetailsData";
 import Seats from "./reservationGrid/Seats";
 import CreditCard from "./creditCard/CreditCard";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import teamNameImage from "../../assets/data/teamsNameImage";
+
 
 
 const ReservationPage = () => {
 
   const myUser = useSelector((state) => state.user);
-  const id = myUser.id;
+  const Userid = myUser.id;
   const [user, setUser] = useState({});
+  //get match id from url
+  const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(false);
   
-  const [teams, setTeams] = useState([matchesDetailsData.team1, matchesDetailsData.team2]);
-  const [images, setImages] = useState([matchesDetailsData.image1, matchesDetailsData.image2]);
-  const [seatArrangement, setSeatArrangement] = useState(matchesDetailsData.seatsArray);
+  const [teams, setTeams] = useState([]);
+  const [images, setImages] = useState([]);
+  const [seatArrangement, setSeatArrangement] = useState();
   const [selectedSeatsCount, setSelectedSeatsCount] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [success, setSuccess] = useState("");
+  const [matchesDetailsData, setMatchesDetailsData] = useState({});
+  const [stadiumName, setStadiumName] = useState("");
+  const [matchDate, setMatchDate] = useState("");
+  const [matchTime, setMatchTime] = useState("");
+  const [price, setPrice] = useState(0);
+  const [matchLinesMen, setMatchLinesMen] = useState(["t", "t"]);
 
-  async function getPrograms() {
+  async function getMatchDetails() {
     try {
+      setIsLoading(true);
+      const response = await axios.get(routes.getmatch + id);
+      setMatchesDetailsData(response.data);
+      console.log("matchesDetailsData", matchesDetailsData);
+      setTeams([response.data.homeTeam, response.data.awayTeam]);
+      setImages([teamNameImage[response.data.homeTeam], teamNameImage[response.data.awayTeam]]);
+
+      //get stadium name
+      const response2 = await axios.get(routes.getStadiums + response.data.matchVenue);
+      //get stadium name only
+      console.log("response2", response2.data);
+      let stadiumNames = response2.data.name
+      setStadiumName(stadiumNames);
+
+      //get match date
+      let matchDate = response.data.dateTime
+      //convert data to dd-mm-yyyy format
+      matchDate = new Date(matchDate).toLocaleString().split(",")[0].replaceAll("/", "-")
+      setMatchDate(matchDate);
+      //get time only
+      let matchTime = response.data.dateTime
+      matchTime = new Date(matchTime).toLocaleString().split(",")[1]
+      setMatchTime(matchTime);
+
+      //set seatArrangement
+      let seatArrangement = response.data.layout
+      console.log("seatArrangement", seatArrangement);
+      setSeatArrangement(seatArrangement);
+      
+      //set price
+      let price = response.data.price
+      setPrice(price);
+
+      //set linesmen
+      let linesmen = response.data.linesmen
+      setMatchLinesMen(linesmen);
+
+
+
+
       setIsLoading(false);
       setIsLoading(false);
 
@@ -37,7 +88,9 @@ const ReservationPage = () => {
     }
   }
   useEffect(() => {
-    getPrograms();
+    console.log("MATCHID",id)
+
+    getMatchDetails();
   }, []);
   const handleSeatClick = (row, col, sentValue) => {
     // Toggle seat reservation status
@@ -67,6 +120,19 @@ const ReservationPage = () => {
     }
     console.log("newSeatArray", seatArrangement);
     //send seatArrangement to backend
+    async function sendSeats() {
+      try {
+        const response = await axios.post(routes.addReservation, {
+          "match": id,
+          "paymentStatus": 1,
+          "totalPrice": price,
+          "layout": seatArrangement,
+          "numberOfSeats": selectedSeatsCount,
+        });
+        console.log("response", response.data);
+      } catch (err) { }
+    }
+    sendSeats();
 
     setSuccess("Your seats have been reserved successfully");
   }
@@ -92,18 +158,18 @@ const ReservationPage = () => {
           <div className={classes.details}>
             <div className={classes.location}>
                 <PinDropIcon/>
-                <p>Location</p>
+                <p>{stadiumName}</p>
                 <p>{matchesDetailsData.location}</p>
             </div>
             <div className={classes.time}>
                 <p>Date</p>
-                <p>{matchesDetailsData.date}</p>
-                <p>{matchesDetailsData.time}</p>
+                <p>{matchDate}</p>
+                <p>{matchTime}</p>
             </div>
             <div className={classes.referees}>
-                <p>Main Referee: {matchesDetailsData.mainReferee}</p>
-                <p>First Lineman: {matchesDetailsData.firstLinesman}</p>
-                <p>Second Lineman: {matchesDetailsData.secondLinesman}</p>
+                <p>Main Referee: {matchesDetailsData?.mainReferee}</p>
+                <p>First Lineman: {matchLinesMen[0]}</p>
+                <p>Second Lineman: {matchLinesMen[1]}</p>
             </div>
             
             <Seats seatArrangement={seatArrangement} setSeatArrangement={setSeatArrangement } setSelectedSeatsCount={setSelectedSeatsCount} selectedSeatsCount={selectedSeatsCount} onSeatClick={handleSeatClick} />

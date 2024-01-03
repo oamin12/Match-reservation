@@ -12,15 +12,16 @@ import teamNameImage from "../../assets/data/teamsNameImage";
 const HomePage = () => {
   const [homeData, setHomeData] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  let teamImage1;
+  let teamImage2;
 
   async function getHome() {
     try {
       const response = await axios.get(routes.getHome);
-      setHomeData(response.data);
       setLoading(false);
       console.log("response", response.data);
       setHomeData(response.data)
+      console.log("homeData", homeData);
     } catch (err) { }
   }
   useEffect(() => {
@@ -30,12 +31,7 @@ const HomePage = () => {
     //   teamImage = teamNameImage.filter(function (item) {
     //     return item.team === element.team1;
     //   });
-    homeData.forEach(element => {
-        console.log("element", teamNameImage[element.team1]);
-        element.image1 = teamNameImage[element.team1];
-        element.image2 = teamNameImage[element.team2];
-      });
-
+   
   }, []);
   const empty = [];
 

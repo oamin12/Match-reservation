@@ -32,7 +32,7 @@ function Confirm(props) {
                         <div className={classes.info}>
                             {/*this will have the number of tickets and total price, 2 text boxes one for CreditCard number and 1 for password*/}
                             <div className={classes.infoItem}>
-                                <p>Are you sure you want to delete this user?</p>
+                                <p>Are you sure you want to delete this reservation?</p>
                             </div>
                             {props.success!==""? <p className={classes.success}>{props.success}</p>:null}
                             <div className={classes.btns}>

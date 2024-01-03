@@ -110,6 +110,8 @@ h3{
     font-weight: 600;
 }
 
+
+
 @media screen and (max-width: 580px) {
     .containerTicket{
         width: 80%;

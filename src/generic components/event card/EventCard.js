@@ -22,12 +22,15 @@ const EventCard = (props) => {
     return new Date(date).toLocaleString().split(",")[0].replaceAll("/", "-")
   }
   useEffect(() => {
+    console.log("IM HERE")
     //get stadium name from id
     async function getStadium() {
       try {
-        const response = await axios.get(routes.getStadium + props.stadiumId);
-        console.log("stadium", response.data);
-        setStadium(response.data.name);
+
+        const response = await axios.get(routes.getStadiums + props.location);
+        //get stadium name only
+        let stadiumNames = response.data.name
+        setStadium(stadiumNames);
       } catch (err) {}
     }
     getStadium();

@@ -2,45 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route} from "react-router-dom";
 import classes from "./adminAuth.module.css";
 import UserCard from "./usercard/UserCard.js"
+import axios from "../../../requests/axios";
+import routes from "../../../requests/routes";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // async function fetchData() {
-    //   try {
-    //     const response = await axios.get(routes.getUsers);
-    //     setUsers(response.data);
-    //   } catch (err) {}
-    // }
-    // fetchData();
-    setUsers([
-      {
-        id: 1,
-        name: "Ahmed Amin",
-        username: "ahmedamin",
-        email: "adwa@daw.com"
-      },
-      {
-        id: 2,
-        name: "abdelrahman sayed sika",
-        username: "mohamed123445",
-        email: "mo@yahooo.com"
-      },
-      {
-        id: 3,
-        name: "Ali ali ali",
-        username: "ali9090",
-        email: "ali@ali.ali"
-      },
-      {
-        id: 4,
-        name: "Omar Amin amin",
-        username: "omaromar",
-        email: "oamin.omar@madw.com"
-      },
-    ]);
+
+    //get users names from backend and set it to users TODO
+    async function getUsers() {
+      try {
+        const response = await axios.get(routes.getUnauthorized);
+        setUsers(response.data);
+        console.log("response", response.data);
+      }
+      catch (err) {}
+    }
+    getUsers();
+
+   
   }, []);
 
   return (
@@ -51,9 +34,9 @@ const AdminDashboard = () => {
           {users.map((user)=>{
               return (
                 <UserCard
-                  key={user.id}
-                  id={user.id}
-                  name={user.name}
+                  key={user._id}
+                  id={user._id}
+                  name={user.firstName + " " + user.lastName}
                   email={user.email}
                 />
               );

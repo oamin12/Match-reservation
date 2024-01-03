@@ -144,7 +144,30 @@
     margin-block: 5rem;
 
 }
+.noevents {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0; 
+    width: 100%;
+    color: var(--green);
+  
+  }
+  
+  .noevents p {
+    text-align: center;
+    font-size: var(--lengthM3);
+    font-weight: 400;
+    font-family: var(--main-font);
 
+    
+  }
+  
+  .noevents img{
+    width: 35rem;
+  }
+  
 
 
 @media screen and (max-width:670px)

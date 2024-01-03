@@ -10,6 +10,7 @@ import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import teamNameImage from "../../assets/data/teamsNameImage";
 
 import notFound from "../../assets/imgs/notFound/programs.png";
 
@@ -17,9 +18,14 @@ import notFound from "../../assets/imgs/notFound/programs.png";
 const EventList = (props) => {
   // const [Eventcards, SetEventcards] = useState([0, 0, 0, 0]);
   const [loading, setLoading] = useState(true);
-
+  const [teamImage1, setTeamImage1] = useState("");
+  const [teamImage2, setTeamImage2] = useState("");
   const Eventcards = props.events;
   const Matchcards = props.events;
+
+  useEffect(() => {
+
+    });
 
   return (
     <div>
@@ -38,11 +44,11 @@ const EventList = (props) => {
             className={classes.carousel}
             mouseTracking items={Eventcards?.map((card) => (
               <EventCard
-                id={card.id}
+                id={card._id}
                 key={card.id}
                 img={card.image}
-                image1={card.image1}
-                image2={card.image2}
+                image1={teamNameImage[card.homeTeam]}
+                image2={teamNameImage[card.awayTeam]}
                 team1={card.homeTeam}
                 team2={card.awayTeam}
                 date={card.dateTime}

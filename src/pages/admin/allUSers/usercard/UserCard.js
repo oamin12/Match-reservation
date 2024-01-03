@@ -3,6 +3,9 @@ import classes from './usercard.module.css'
 import PinDropIcon from '@mui/icons-material/PinDrop';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import Confirm from './ConfirmCard/Confirm';
+import axios from '../../../../requests/axios'
+import routes from '../../../../requests/routes'
+import { useNavigate } from 'react-router-dom'
 
 const UserCard = (props) => {
 
@@ -20,7 +23,18 @@ const UserCard = (props) => {
 
   function handleSubmit(){
     //send delete request to backend
-    //setModalOpen(false);
+    async function deleteData() {
+      try {
+          const response = await axios.delete(routes.deleteUser+props.id, );
+          window.location.reload();
+
+      } catch (err) {
+          setSuccess("Error deleting user");
+        return;
+      }
+  }
+  deleteData();
+
     setSuccess("User deleted successfully");
   }
 

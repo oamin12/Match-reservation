@@ -23,10 +23,11 @@ const AddMatch = (props) => {
     //get stadiums names from backend and set it to stadiums TODO
    async function getStadiums(){
       try {
-        const response = await axios.get(routes.getStadiums);
+        const response = await axios.get(routes.getAllStadiums);
         console.log("Get ALl",response.data);
         let stadiumNames = response.data.map(stadium => stadium.name);
         setStadiums(stadiumNames);
+        console.log("stadiumsList",response.data);
         setStadiumsList(response.data);
 
 
@@ -64,12 +65,15 @@ const AddMatch = (props) => {
 
   });
 
-  const handleSubmit = (data, { setErrors }) => {
+  const handleSubmit = (data, { resetForm }) => {
     console.log(data);
     //get match id from stadium list and stadium name
     for (let i = 0; i < stadiumsList.length; i++) {
+      console.log(stadiumsList[i].name);
+      console.log(data.stadium);
       if (stadiumsList[i].name === data.stadium) {
         var stadiumId = stadiumsList[i]._id;
+        console.log("sawd",stadiumId);
       }
     }
     console.log(stadiumId);
@@ -89,6 +93,8 @@ const AddMatch = (props) => {
     async function addMatch() {
       try {
         const response = await axios.post(routes.addmatch, data1);
+        resetForm();
+
       } catch (err) {}
     }
 
@@ -195,7 +201,7 @@ const AddMatch = (props) => {
                     <Field
                       className={classes.ziad}
                       name="date"
-                      type="date"
+                      type="datetime-local"
                       autoComplete="off"
                     />
                     <ErrorMessage

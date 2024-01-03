@@ -28,5 +28,18 @@
     overflow-y: scroll;
     margin-left: 7rem;
     columns:2;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+@media screen and (max-width: 580px) {
+
+  .container > h1 {
+    margin-left: 8rem;
+  }
+  .userslist {
+   
+    grid-template-columns: 1fr; 
+  }
 }

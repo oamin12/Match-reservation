@@ -5,7 +5,7 @@ const Seats = (props) => {
     const [seatArrangement, setSeatArrangement] = useState(props.seatArrangement);
 
   
-    const drawGrid = props.seatArrangement.map((rows, rowIndex) => {
+    const drawGrid = props.seatArrangement?.map((rows, rowIndex) => {
         return (
           <div className={classes.row} key={rowIndex}>
             {rows?.map((seat, colIndex) => {
