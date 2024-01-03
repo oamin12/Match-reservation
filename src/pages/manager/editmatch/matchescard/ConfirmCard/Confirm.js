@@ -12,24 +12,35 @@ import routes from "../../../../../requests/routes";
 
 
 function Confirm(props) {
+    const [stadiums, setStadiums] = useState();
+    const [stadiumsList, setStadiumsList] = useState([]); //TODO: get stadiums from backend
+    const [teams, setTeams] = useState([]);
     const [error, setError] = useState("");
+    const [stadiumName, setStadiumName] = useState("");
     function handleModalClose() {
         props.setOpen(false);
         props.setSuccess("")
         setError("");
     }
     function handleSubmit(data) {
- 
+        for (let i = 0; i < stadiumsList.length; i++) {
+            console.log(stadiumsList[i].name);
+            console.log(data.stadium);
+            if (stadiumsList[i].name === data.stadium) {
+              var stadiumId = stadiumsList[i]._id;
+              console.log("sawd",stadiumId);
+            }
+          }
             //send edit request to backend
               async function editData() {
                   try {
                       const response = await axios.patch(routes.editMatch+props.id, {
                           homeTeam: data.team1,
                           awayTeam: data.team2,
-                          stadium: data.stadium,
+                          matchVenue: stadiumId,
                           date: data.date,
                           mainReferee: data.mainreferee,
-                          linesMen: [data.firstlinesman, data.secondlinesman]
+                          linesmen: [data.firstlinesman, data.secondlinesman]
                       });
                       window.location.reload();
                   }
@@ -40,26 +51,55 @@ function Confirm(props) {
               editData();
       
     }
-    const [teams, setTeams] = useState([]);
-    const [stadiums, setStadiums] = useState(stadiumsList);
+    
   
     useEffect(() => {
-      //get teams names from teamsNameImage.js and set it to teams
-      setTeams(teamsList);
-    }, []);
+
+        console.log("sssssssssssss",props.stadium)
+        //get teams names from teamsNameImage.js and set it to teams
+        setTeams(teamsList);
+    
+        //get stadiums names from backend and set it to stadiums TODO
+       async function getStadiums(){
+          try {
+            const response = await axios.get(routes.getAllStadiums);
+            console.log("Get ALl",response.data);
+            let stadiumNames = response.data.map(stadium => stadium.name);
+            setStadiums(stadiumNames);
+            console.log("stadiumsList",response.data);
+            setStadiumsList(response.data);
+    
+    
+          } catch (err) {}
+    
+          
+        } 
+        getStadiums();
+      }, []);
   
     const initialValues = {
       team1: props.team1,
       team2: props.team2,
-      stadium: props.stadium,
+      stadium: getStadium(),
       date: props.date,
       mainreferee: props.mainreferee,
       firstlinesman: props.firstlinesman,
       secondlinesman: props.secondlinesman,
   
     };
-    function getStadiums(){
+    function getStadium(){
       //get stadiums names from backend and set it to stadiums TODO
+        async function getStadiums(){
+            try {
+                const response = await axios.get(routes.getStadiums+props.stadium);
+                console.log("Get ALl",response.data);
+                let stadiumNames = response.data.map(stadium => stadium.name);
+                console.log("stadiumsList",response.data);
+                setStadiumName(stadiumNames);
+            } catch (err) {}
+
+        return stadiumName;
+        }
     }
     const validationSchema = Yup.object().shape({
       //team2 and team1 should be different
@@ -155,7 +195,7 @@ function Confirm(props) {
                                                     className={classes.fieldo}
                                                     defaultValue={values.stadium}
                                                 >
-                                                    {stadiums.map((stadium) => {
+                                                    {stadiums?.map((stadium) => {
                                                     return (
                                                         <option
                                                         value={stadium}
