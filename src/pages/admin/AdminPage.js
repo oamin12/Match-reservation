@@ -20,7 +20,7 @@ const AdminPage = () => {
 
   //To make sure user can't access login if he is already logged in
   useEffect(() => {
-    if(user.isAdmin===false){
+    if(user.userType!=="admin"){
       navigate("/")
     }
   }, []);

@@ -19,6 +19,7 @@ const userSlice = createSlice({
             state.token = action.payload.token
             state.userType = action.payload.userType
             state.isAdmin = action.payload.isAdmin
+            window.location.reload();
         },
         signup: (state) =>{
             state.loggedIn= false

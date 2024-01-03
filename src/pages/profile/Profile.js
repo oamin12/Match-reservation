@@ -16,9 +16,29 @@ const Profile = () => {
   const [user, setUser] = useState({});
   const [selectedItem, setSelectedItem] = useState("My Feed");
 
+  function parseDate(date) {
+    if (!date)
+      return ""
+    //change to yyyy-mm-dd format
+
+    let dato = new Date(date).toLocaleString().split(",")[0].replaceAll("/", "-")
+    const parts = dato.split('-');
+    const [day, month, year] = parts;
+    const formattedDate = `${year}-${month}-${day}`;
+    return formattedDate;
+    
+
+  }
+
   async function getUser() {
     try {
+
+      //console log axios config
+
+      console.log("axios config", axios.defaults);
+
       const response = await axios.get(routes.getUser + id);
+      console.log("response", response.data);
       setUser(response.data);
     } catch (err) {}
   }
@@ -40,9 +60,9 @@ const Profile = () => {
           </div>
           <div className={classes.profileInfo}>
             <div className={classes.profileDetails}>
-              <h1 className={classes.profileName}>{user.fullName}</h1>
+              <h1 className={classes.profileName}>{user.firstName} {user.lastName}</h1>
               <div className={classes.extraDetails}>
-                <h1 className={classes.profileTitle}>User ID: {user._id}</h1>
+                <h1 className={classes.profileTitle}>Username: {user.username}</h1>
               </div>
             </div>
           </div>
@@ -75,10 +95,14 @@ const Profile = () => {
       {selectedItem === "Profile Info" ? (
         <section>
           <PersonalInfo
-            fullName={user.fullName}
+            firstName={user.firstName}
+            lastName={user.lastName}
             email={user.email}
-            phone={user.phoneNO}
             id={user._id}
+            gender={user.gender}
+            city={user.city}
+            address={user.address}
+            birthDate={parseDate(user.birthDate)}
           />
         </section>
       ) : null}

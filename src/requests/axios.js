@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://have-a-dream.onrender.com/",
+  baseURL: "http://51.20.5.222:3000/",
 });
 
 instance.interceptors.request.use(
@@ -9,9 +9,11 @@ instance.interceptors.request.use(
     const token = sessionStorage.getItem("token");
 
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-      config.headers.ID = sessionStorage.getItem("ID");
+      console.log("token", token);
+      config.headers.Authorization = `${token}`;
+      //config.headers.ID = sessionStorage.getItem("ID");
     }
+    console.log("config", config.headers);
 
     return config;
   },

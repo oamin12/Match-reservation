@@ -69,7 +69,7 @@ const NavBar = (props) => {
                   Logout
                 </li>
               </NavLink>
-              {user.isAdmin ? (
+              {user.userType == "admin" ? (
                 <NavLink to={"/admin/unauthorized"}>
                   <li className={classes.navItem}>Admin Center</li>
                 </NavLink>
@@ -139,7 +139,7 @@ const NavBar = (props) => {
                 {navData.Home[1][0].title}
               </NavLink>
             </li>
-          ) : user.isAdmin ? (
+          ) : user.userType === "admin" ? (
             navData.Home[3].map((item, index) => {
               return (
                 <li

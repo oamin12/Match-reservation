@@ -40,12 +40,12 @@ const LoginPage = () => {
   }, []);
 
   const initialValues = {
-    email: "",
+    username: "",
     password: "",
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().required("Please enter a valid user name or email address"),
+    username: Yup.string().required("Please enter a valid user name"),
     password: Yup.string().required("Password is required"),
   });
   const [loader,setLoader] = useState(false);
@@ -54,24 +54,24 @@ const LoginPage = () => {
     setErrorMsg("");
     setErrorLinkMsg("");
     setErrorLink("");
-    setEmail(data.email);
 
     async function sendData() {
       setLoader(true);
       try {
         const response = await axios.post(routes.logIn, data);
         setLoader(false);
+        console.log(response);
         dispatch(
           userActions.login({
-            id: response.data.user._id,
+            id: response.data.id,
             token: response.data.token,
-            userType: "fan",
-            isAdmin: response.data.user.isAdmin
+            userType: response.data.role,
           })
         );
         sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("id", response.data.user._id);
+        sessionStorage.setItem("id", response.data.id);
         navigate("/");
+
       } catch (err) {
         setLoader(false);
         // console.log("X" + err.response.data.error + "x");
@@ -168,17 +168,16 @@ const LoginPage = () => {
             >
               {({ values }) => (
                 <Form>
-                  {setEmail(values.email)}
                   <div className={classes.boxContainer}>
                     <label className={classes.label}>User Name or Email address</label>
                     <Field
                       className={classes.field}
-                      name="email"
+                      name="username"
                       autoComplete="off"
                       data-testid="LoginFormEmailInput"
                     />
                     <ErrorMessage
-                      name="email"
+                      name="username"
                       component="span"
                       data-testid="emailError"
                     />

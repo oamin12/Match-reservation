@@ -7,31 +7,41 @@ import routes from "../../../requests/routes";
 import Cities from "../../../assets/data/Cities.js";
 
 const PersonalInfo = (props) => {
+
+  const [dataToBeSent, setDataToBeSent] = useState({});
+
   const initialValues = {
     email: props.email,
-    fullName: props.fullName,
-    phoneNO: props.phone,
-    nationalId: "",
-    birthDate: "",
-    Address: "",
-    gender: "",
-    city: "Mokattam",//change to props.city TODO
+    firstName: props.firstName,
+    lastName: props.lastName,
+    birthDate: props.birthDate,
+    Address: props.address,
+    gender: props.gender,
+    city: props.city,
   };
+
+  useEffect(() => {
+    console.log("props", props);
+  }, []);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .min(3)
       .email("Please enter a valid email address")
       .required("Please enter a valid email address"),
-    fullName: Yup.string().required("Please enter your full name"),
+    firsName: Yup.string().required("Please enter your full name"),
 
   });
 
-  const handleSubmit = (data, { setErrors }) => {
-    console.log(data);
+  function handleSubmit() {
+    //console.log(data);
     async function updateData() {
       try {
-        const response = await axios.put(routes.getUser, data);
+        const response = await axios.patch(routes.updateUser+props.id, dataToBeSent);
+        
+        if(response)
+        window.location.reload();
+        
       } catch (err) {}
     }
 
@@ -49,6 +59,7 @@ const PersonalInfo = (props) => {
       >
         {({ values }) => (
           <Form>
+          {setDataToBeSent(values)}
             <div className={
                 !props.isBooking ? classes.container : null
               }>
@@ -69,22 +80,41 @@ const PersonalInfo = (props) => {
 
                 <div className={classes.fieldRow}>
                   <div className={classes.fieldEntry}>
-                    <label className={classes.label}> Full Name</label>
+                    <label className={classes.label}> First Name</label>
                     <Field
                       className={classes.fieldo}
-                      name="fullName"
+                      name="firstName"
                       type="text"
                       autoComplete="off"
                       required
                       
                     />
                     <ErrorMessage
-                      name="fullName"
+                      name="firstName"
                       component="span"
                       className={classes.error}
                     />
                   </div>
                   <div className={classes.fieldEntry}>
+                    <label className={classes.label}>Last Name</label>
+                    <Field
+                      className={classes.fieldo}
+                      name="lastName"
+                      type="text"
+                      autoComplete="off"
+                      required
+                      
+                    />
+                    <ErrorMessage
+                      name="lastName"
+                      component="span"
+                      className={classes.error}
+                    />
+                  </div>
+                  
+                </div>
+                <div className={classes.fieldRow}>
+                <div className={classes.fieldEntry}>
                     <label className={classes.label}> Email Address</label>
                     <Field
                       className={classes.fieldo}
@@ -101,40 +131,7 @@ const PersonalInfo = (props) => {
                       data-testid="emailError"
                     />
                   </div>
-                </div>
-                <div className={classes.fieldRow}>
-                  <div className={classes.fieldEntry}>
-                    <label className={classes.label}> National ID</label>
-                    <Field
-                      className={classes.fieldo}
-                      name="nationalId"
-                      pattern="^[0-9]{14}$"
-                      autoComplete="off"
-                      number="true"
-                    />
-                    <ErrorMessage
-                      className={classes.error}
-                      name="nationalId"
-                      component="span"
-                    />
-                  </div>
 
-                  <div className={classes.fieldEntry}>
-                    <label className={classes.label}> Phone Number</label>
-                    <Field
-                      className={classes.fieldo}
-                      name="phoneNO"
-                      autoComplete="off"
-                      data-testid="LoginFormEmailInput"
-                    />
-                    <ErrorMessage
-                      name="phoneNO"
-                      component="span"
-                      data-testid="emailError"
-                    />
-                  </div>
-                </div>
-                <div className={classes.fieldRow}>
                   <div className={classes.fieldEntry}>
                     <label className={classes.label}> Date Of Birth</label>
                     <Field
@@ -149,6 +146,9 @@ const PersonalInfo = (props) => {
                       className={classes.error}
                     />
                   </div>
+                </div>
+                <div className={classes.fieldRow}>
+                  
                   <div className={classes.fieldEntry}>
                     <label className={classes.label}>Address</label>
                     <Field
@@ -211,7 +211,7 @@ const PersonalInfo = (props) => {
                 </div>
               </div>
             </div>
-            <button className={props.isBooking?classes.btn:classes.btnProfile} type="submit" >
+            <button className={props.isBooking?classes.btn:classes.btnProfile} type="submit" onClick={handleSubmit} >
               Save
             </button>
             </div>

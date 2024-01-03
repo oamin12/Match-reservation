@@ -54,12 +54,13 @@ const SignupPage = () => {
     username: "",
     email: "",
     address: "",
-    fullName: "",
+    firstName: "",
+    lastName: "",
     gender: "male",
     password: "",
     passwordConfirm: "",
     birthDate: "",
-    role: "user",
+    role: "fan",
     city: "Mokattam",
   };
 
@@ -71,10 +72,10 @@ const SignupPage = () => {
 
     password: Yup.string().min(8).required("Field required"),
     passwordConfirm: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required("Field required"),
-    fullName: Yup.string().required("Full name field required"),
+    firstName: Yup.string().required("Full name field required"),
+    lastName: Yup.string().required("Full name field required"),
     username: Yup.string().required("Username field required"),
     birthDate: Yup.date().required("Date Field required"),
-    gender: Yup.string().oneOf(['male','female'],'choose a gender').required("Gender Field required"),
     user: Yup.string().required("Field required"),
     
 
@@ -93,6 +94,7 @@ const SignupPage = () => {
     setagreeformstate(true);
     setLoader(false);
     
+    navigate("/login")
     
   } catch(err){
     setLoader(false);
@@ -103,15 +105,15 @@ const SignupPage = () => {
 }  
 
 const handleSubmit = (data) => {
+  console.log("lol");
   setdatainfo(data);
-  setErrorMsg("")
-  setErrorLinkMsg("")
-  setErrorLink("")
+  sendData(datainfo);
+
+ 
   
 };
 const accepthandle=() =>{
   setstateoftheconditionform(false);
-  sendData(datainfo);
 }
 const rejecthandle=()=>{
   setstateoftheconditionform(false);
@@ -143,7 +145,8 @@ const rejecthandle=()=>{
             >
               {({ values }) => (
                 <Form>
-                  {setMyEmail(values.email)}
+                  {setdatainfo(values)}
+                  
                   <div className={classes.boxContainer}>
                       <label className={classes.label}> Email address </label>
                       <Field 
@@ -168,14 +171,23 @@ const rejecthandle=()=>{
                     <ErrorMessage name="username" component="span" />
                   </div>
                     <div className={classes.boxContainer}>
-                        <label className={classes.label}> Full Name </label>
+                        <label className={classes.label}> First Name </label>
                         <Field
                           className={classes.field}
-                          name="fullName"
+                          name="firstName"
                           autoComplete="off"
                           data-testid="fullNamefield"
                         />
-                      <ErrorMessage name="fullName" component="span" />
+                      <ErrorMessage name="firstName" component="span" />
+                    </div>
+                    <div className={classes.boxContainer}>
+                        <label className={classes.label}> Last Name </label>
+                        <Field
+                          className={classes.field}
+                          name="lastName"
+                          autoComplete="off"
+                        />
+                      <ErrorMessage name="lastName" component="span" />
                     </div>
                     <div className={classes.boxContainer}>
                         <label className={classes.label}> Date Of Birth</label>
@@ -239,7 +251,7 @@ const rejecthandle=()=>{
                         <Field
                           className={classes.field}
                           name="address"
-                          type="number"
+                          type="text"
                           autoComplete="off"
                         />
                       <ErrorMessage name="address" component="span" />
@@ -278,9 +290,9 @@ const rejecthandle=()=>{
                           type="radio"
                           className={classes.radio}
                           name="role"
-                          value="user"
+                          value="fan"
                         />
-                        <div>User</div>
+                        <div>Fan</div>
                       </label>
                       <label className={classes.label__radio}>
                         <Field
@@ -296,31 +308,10 @@ const rejecthandle=()=>{
                     <div
                       className={classes.btn}
                     >
-                      <button type="submit" className={classes.button} data-testid="CreateBtn" onClick={openconditionform}>
+                      <button type="submit" className={classes.button} onClick={handleSubmit} >
                         Create account
                       </button>
-                      {stateoftheconditionform &&(
-                        <GenericModal 
-                            header='Terms & conditions'
-                            details='I accept Have A Dream Terms Of Services,Commuity guidelines and have read the privacy policy'
-                            rejectbtn='Cancel'
-                            confirmbtn='Agree'
-                            icon={<BiErrorCircle className={classes.modalicon}/>}
-                            accepthandle={accepthandle}
-                            rejecthandle={rejecthandle}
-                        />
-                      )}
-                      {agreeformstate &&(
-                        <>
-                           <GenericModal 
-                                header='Verification Email has been sent to you'
-                                icon={<TfiEmail className={classes.modalicon}/>}
-                            />
-
-                        </>
-                      )}
                     </div>
-                    {loader && <Loader color={"#F46444"}/>}
                 </Form>
               )}
             </Formik>
