@@ -18,10 +18,27 @@ function Confirm(props) {
         props.setSuccess("")
         setError("");
     }
-    function handleSubmit() {
+    function handleSubmit(data) {
  
-        props.handleSubmit();
-
+            //send edit request to backend
+              async function editData() {
+                  try {
+                      const response = await axios.patch(routes.editMatch+props.id, {
+                          homeTeam: data.team1,
+                          awayTeam: data.team2,
+                          stadium: data.stadium,
+                          date: data.date,
+                          mainReferee: data.mainreferee,
+                          linesMen: [data.firstlinesman, data.secondlinesman]
+                      });
+                      window.location.reload();
+                  }
+                  catch (err) {
+                      return;
+                  }
+              }
+              editData();
+      
     }
     const [teams, setTeams] = useState([]);
     const [stadiums, setStadiums] = useState(stadiumsList);

@@ -18,5 +18,7 @@ const routes = {
     authorizeUser:"/user/approve-user/",
     getUserReservations:"/user/get-user-reservations/",
     deleteReservation:"/reservations/delete-reservation/",
+    getAllMatches:"/match/",
+    editMatch:"/match/update-match/",
 }
 export default routes 

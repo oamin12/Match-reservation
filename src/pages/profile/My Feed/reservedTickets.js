@@ -27,15 +27,16 @@ const ReservedTickets = (props) => {
       async function deleteData() {
         try {
             const response = await axios.delete(routes.deleteReservation+props.reservationID, );
+            window.location.reload();
     
         } catch (err) {
-            setSuccess("Error deleting user");
+            setSuccess("Error deleting Reservation: can't delete before 3 days of match");
           return;
         }
     }
     deleteData();
     
-      setSuccess("User deleted successfully");
+      setSuccess("Reservation deleted successfully");
     }
     useEffect(() => {
         //get match details

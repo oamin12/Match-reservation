@@ -19,6 +19,7 @@ const ReservationPage = () => {
 
   const myUser = useSelector((state) => state.user);
   const Userid = myUser.id;
+  const logged = myUser.loggedIn;
   const [user, setUser] = useState({});
   //get match id from url
   const { id } = useParams();
@@ -101,6 +102,13 @@ const ReservationPage = () => {
   };
 
   function handleReserveClick(){
+
+    //check on logged in
+    if(!logged){
+      alert("You must be logged in to reserve a ticket");
+      return;
+    }
+
     if(myUser.userType==="fan"){
       setModalOpen(true);
     }

@@ -75,11 +75,13 @@ const LoginPage = () => {
       } catch (err) {
         setLoader(false);
         // console.log("X" + err.response.data.error + "x");
-        if (err.response.data.error === "Error: Password is incorrect") {
+        if (err.response.data.message === "User not approved yet")
+          setErrorMsg("User not approved yet");
+        else if (err.response.data.message === "Error: Password is incorrect") {
           setErrorMsg("user name or password is incorrect");
           setShowForgetPass(true);
         } else if (
-          err.response.data.error === "Error: email is not verified "
+          err.response.data.message === "Error: email is not verified "
         ) {
           setErrorMsg("Email is not verified");
         } else {
@@ -169,7 +171,7 @@ const LoginPage = () => {
               {({ values }) => (
                 <Form>
                   <div className={classes.boxContainer}>
-                    <label className={classes.label}>User Name or Email address</label>
+                    <label className={classes.label}>User Name</label>
                     <Field
                       className={classes.field}
                       name="username"

@@ -12,24 +12,51 @@ import Confirm from './ConfirmCard/Confirm';
 
 const MatchCard = (props) => {
 
-    function parseDate(date) {
-        if (!date)
-          return ""
-        return new Date(date).toLocaleString().split(",")[0].replaceAll("/", "-")
-      }
+    // function parseDate(date) {
+    //     if (!date)
+    //       return ""
+    //     return new Date(date).toLocaleString().split(",")[0].replaceAll("/", "-")
+    //   }
 
       const [modalOpen, setModalOpen] = useState(false);
       const [success, setSuccess] = useState("");
+      const [stadiumName, setStadiumName] = useState("");
     function handleEdit(){
       setModalOpen(true);
     }
+    function parseDate(date) {
+        if (!date)
+          return ""
+        //change to yyyy-mm-dd format
+    
+        let dato = new Date(date).toLocaleString().split(",")[0].replaceAll("/", "-")
+        const parts = dato.split('-');
+        const [day, month, year] = parts;
+        const formattedDate = `${year}-${month}-${day}`;
+        return formattedDate;
+        
+    
+      }
   
-    function handleSubmit(){
-      //send edit request to backend
-      //setModalOpen(false);
-      setSuccess("Match edited successfully");
+    
+    useEffect(() => {
+        //get match details
+          //get stadium name
+          async function getStadiumName() {
+            try {
+            const response = await axios.get(routes.getStadiums + props.stadium);
+            //get stadium name only
+            console.log("response2", response.data);
+            let stadiumNames = response.data.name
+            setStadiumName(stadiumNames);
+            }
+            catch (err) {
+            return;
+            }
+        }
+        getStadiumName();
     }
-  
+    , [])
 
   return (
     <div className={classes.containerTicket}>
@@ -42,7 +69,7 @@ const MatchCard = (props) => {
                     <p>{props.team2}</p>
                 </div>
                 <div className={classes.location}>
-                    <PinDropIcon /> {props.stadium}
+                    <PinDropIcon /> {stadiumName}
                 </div>
                 <div className={classes.time}>
                     <DateRangeIcon />
@@ -54,7 +81,7 @@ const MatchCard = (props) => {
         <div className={classes.ticketButtons}>
             <button className={classes.btn} onClick={handleEdit}>Edit Match</button>
         </div>
-        <Confirm open={modalOpen} setOpen={setModalOpen} success={success} setSuccess={setSuccess} handleSubmit={handleSubmit} id={props.id} team1={props.team1} team2={props.team2} stadium={props.stadium} date={props.date} mainreferee={props.mainreferee} firstlinesman={props.firstlinesman} secondlinesman={props.secondlinesman} />
+        <Confirm open={modalOpen} setOpen={setModalOpen} success={success} setSuccess={setSuccess} id={props.id} team1={props.team1} team2={props.team2} stadium={props.stadium} date={parseDate(props.date)} mainreferee={props.mainreferee} firstlinesman={props.firstlinesman} secondlinesman={props.secondlinesman} />
     </div>
   )
 }

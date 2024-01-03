@@ -4,12 +4,15 @@ import classes from "./editmatch.module.css";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import MatchCard from "./matchescard/MatchCard";
-
+import axios from "../../../requests/axios";
+import routes from "../../../requests/routes";
+import { useNavigate } from "react-router-dom";
 
 const EditMatch = () => {
   const [users, setUsers] = useState([]);
   const [matches, setMatches] = useState([]);
-
+  const [stadiumName, setStadiumName] = useState("");
+  const [linesMen, setLinesMen] = useState(["t","t"]);
   // team1: "Al Ahly",
   // team2: "Ismaily",
   // stadium: "Al Ahly Stadium",
@@ -84,8 +87,27 @@ const EditMatch = () => {
     
   ];
 
+  
   useEffect(() => {
-    setMatches(matchesData);
+    //get all matches
+    async function getMatches() {
+      try {
+        const response = await axios.get(routes.getAllMatches);
+        console.log("response", response.data);
+        setMatches(response.data);
+      } catch (err) {
+        return;
+      }
+    }
+    getMatches();
+
+    //set linesmen
+    if (matches?.linesMen) {
+      let linesmen = matches.linesMen
+      setLinesMen(linesmen);
+    }
+
+
       
     }, [])
   
@@ -95,18 +117,18 @@ const EditMatch = () => {
       <div className={classes.container}>
         <h1>Edit Match</h1>
         <div className={classes.userslist}>
-          {matches.map((match)=>{
+          {matches?.map((match)=>{
               return (
                 <MatchCard
-                  key={match.id}
-                  id={match.id}
-                  team1={match.team1}
-                  team2={match.team2}
-                  stadium={match.stadium}
-                  date={match.date}
-                  mainreferee={match.mainreferee}
-                  firstlinesman={match.firstlinesman}
-                  secondlinesman={match.secondlinesman}
+                  key={match._id}
+                  id={match._id}
+                  team1={match.homeTeam}
+                  team2={match.awayTeam}
+                  stadium={match.matchVenue}
+                  date={match.dateTime}
+                  mainreferee={match.mainReferee}
+                  firstlinesman={linesMen[0]}
+                  secondlinesman={linesMen[1]}
                 />
               );
             })}

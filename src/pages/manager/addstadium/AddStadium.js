@@ -36,11 +36,13 @@ const AddStadium = (props) => {
     seatsPerRow: Yup.string().required("Please enter number of seats per row"),
   });
 
-  const handleSubmit = (data, { setErrors }) => {
+  const handleSubmit = (data, { resetForm }) => {
     console.log(data);
     async function updateData() {
       try {
         const response = await axios.post(routes.addStadium, data);
+        if(response)
+        resetForm();
       } catch (err) {}
     }
 
