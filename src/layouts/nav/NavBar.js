@@ -82,7 +82,7 @@ const NavBar = (props) => {
                       </li>
                     </NavLink>
                   ) : (
-                    <NavLink to={"/manager/"}>
+                    <NavLink to={"/manager/addmatch"}>
                         <li className={classes.navItem}>
                           <PersonOutlineIcon className={classes.profile} /> Manager Portal
                         </li>

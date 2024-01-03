@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 70%;
+  padding-bottom: 5rem;
+  position: relative;
+}
+.container > h1 {
+  font-size: var(--lengthL2);
+  color: var(--green);
+  font-family: var(--main-font);
+  width: 90%;
+  font-weight: 500;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+}
+.userslist {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
+  margin: auto;
+  width: 90%;
+}
+
+@media only screen and (max-width: 1000px) {
+  
+  .userslist {
+    grid-template-columns: 1fr;
+  }
+}

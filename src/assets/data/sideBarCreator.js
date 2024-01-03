@@ -5,6 +5,8 @@ import {FaHandHoldingHeart} from 'react-icons/fa'
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import classes from "../../layouts/sideBar/sidebar.module.css"
+import StadiumIcon from '@mui/icons-material/Stadium';
+import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 
 const sideBarCreator = {
     list: [
@@ -26,13 +28,13 @@ const sideBarCreator = {
         {
           key: "0",  
           title: "Add Match",
-          icon: <VerifiedUserIcon className={classes.icon}/>,
+          icon: <SportsSoccerIcon className={classes.icon}/>,
           route: "/manager/addmatch",
         },
         {
           key: "1",
           title: "Add Stadium",
-          icon: <PeopleAltIcon className={classes.icon}/>,
+          icon: <StadiumIcon className={classes.icon}/>,
           route: "/manager/addstadium",
         },
         {

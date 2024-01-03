@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route} from "react-router-dom";
 import classes from "./manager.module.css";
-import AdminBlogs from "./blogs/AdminBlogs"
-import AdminPrograms from "./programs/AdminPrograms"
-import AdminAuthorize from "./authorize/AdminAuthorize"
-import AdminAllUsers from "./allUSers/AdminAllUsers";
-import SideBar from "./../../layouts/sideBar/Sidebar"
+import SideBar from "./../../layouts/sideBar/Sidebar";
+import AddMatch from "./addmatch/AddMatch";
+import AddStadium from "./addstadium/AddStadium";
+import EditMatch from "./editmatch/EditMatch";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/userSlice";
@@ -32,9 +31,9 @@ const ManagerPage = () => {
       <div className={classes.container}>
       <SideBar SideBar={"manager"}/>
       <Routes>
-        <Route path="/"  element={<AdminAuthorize/>}/>
-        <Route path="/allusers" element={<AdminAllUsers />} />
-        <Route path="/blogs" element={<AdminBlogs />} />
+        <Route path="/addmatch"  element={<AddMatch/>}/>
+        <Route path="/addstadium" element={<AddStadium />} />
+        <Route path="/editmatch" element={<EditMatch />} />
       </Routes>
 
       </div>

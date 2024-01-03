@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route} from "react-router-dom";
 import classes from "./admin.module.css";
-import AdminBlogs from "./blogs/AdminBlogs"
-import AdminPrograms from "./programs/AdminPrograms"
 import AdminAuthorize from "./authorize/AdminAuthorize"
 import AdminAllUsers from "./allUSers/AdminAllUsers";
 import SideBar from "./../../layouts/sideBar/Sidebar"
@@ -35,7 +33,6 @@ const AdminPage = () => {
       <Routes>
         <Route path="/unauthorized"  element={<AdminAuthorize/>}/>
         <Route path="/allusers" element={<AdminAllUsers />} />
-        <Route path="/blogs" element={<AdminBlogs />} />
       </Routes>
 
       </div>
